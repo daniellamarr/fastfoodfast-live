@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fast Food Fast</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli|Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="css/themify-icons.css">
+</head>
+<body>
+    <section id="container">
+        <header class="hbg">
+            <div class="logo">
+                <h1><a href="index.html">Fast-Food-Fast</a></h1>
+            </div>
+            <nav>
+                <ul class="s-hide">
+                    <li>
+                        <a href="javascript:;" id="shoppingcart-b" class="shoppingcart-b"><i class="ti-shopping-cart"></i> <sup><span class="badge itemsincart">0</span></sup></a>
+                    </li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+                <div id="shoppingcart" class="cart-div hide">
+                    <p>You have <span class="itemsincart">0</span> item(s)</p>
+                    <ul class="cart-details">
+                        <div id="cart-details"></div>
+                        <li>
+                            <a href="order.html"><button>View Cart</button></a>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+                <ul class="l-hide">
+                    <li>
+                        <a href="javascript:;" id="shoppingcart-b" class="shoppingcart-b"><i class="ti ti-shopping-cart"></i><sup class="itemsincart">0</sup></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="menu" id="toggle"><i class="ti ti-menu"></i></a>
+                        <div class="dropdown hide" id="dropdown">
+                            <ul>
+                                <li><a href="login.html">Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <section id="profile">
+            <div class="profile">
+                <center>
+                    <div class="profileImage"></div>
+                </center>
+            </div>
+            <div class="profileButtons">
+                <button class="editprofilebtn green" target="editprofile">Edit Profile</button>
+            </div>
+        </section>
+        <section id="profile-bar"></section>
+        <section id="profile-section">
+            <div class="profileDetails">
+                <h3>Your Details</h3>
+                <ul>
+                    <li>Name: John Doe</li>
+                    <li>Email: johndoe@gmail.com</li>
+                    <li>Phone: +2348135700797</li>
+                    <li>Delivery Address: Unilag</li>
+                </ul>
+            </div>
+            <div class="profileOrders">
+                <h3>Your Orders</h3>
+                <div class="table">
+                    <table class="order-table">
+                        <thead>
+                            <th>ID</th>
+                            <th>Order No</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>#30303</td>
+                                <td>Chicken</td>
+                                <td>3000</td>
+                                <td><span class="badge">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>#30303</td>
+                                <td>Chicken</td>
+                                <td>3000</td>
+                                <td><span class="badge">Accepted</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>#30303</td>
+                                <td>Chicken</td>
+                                <td>3000</td>
+                                <td><span class="badge">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>#30303</td>
+                                <td>Chicken</td>
+                                <td>3000</td>
+                                <td><span class="badge">Rejected</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </section>
+        <footer>
+            <div>
+                <p><a href="index.html">Fast-Food-Fast</a></p>
+                <p>Developed by <a href="https://github.com/daniellamarr" target="_blank">Daniel Lamarr</a></p>
+            </div>
+        </footer>
+        <section id="editprofile" class="modal">
+            <center>
+                <div class="modal-content">
+                    <h2>Edit menu</h2>
+                    <form action="">
+                        <input type="text" name="name" id="name" placeholder="Name" required>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <input type="tel" name="phone" id="phone" placeholder="Phone" required>
+                        <textarea name="address" id="address" cols="30" rows="10" placeholder="Address"></textarea>
+                        <button class="green">Save Changes</button>
+                    </form>
+                </div>
+            </center>
+        </section>
+    </section>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
