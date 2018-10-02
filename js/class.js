@@ -1,5 +1,12 @@
+/**
+ * The heroku hosted application URL
+ */
 const path = 'https://daniellamarr-fast-food-fast.herokuapp.com';
 
+/**
+ * Class FastFood contains all methods to beused to
+ * consume endpoints, and support server side queries
+ */
 class FastFood {
     static declareUser (className,str) {
         const cl = document.getElementsByClassName(className);
@@ -7,20 +14,12 @@ class FastFood {
             cl[i].innerHTML = str;
         }
     }
-
-    static initUser () {
-        if (localStorage.getItem('token')!=null) {
-            const tags = document.getElementsByClassName('user-login');
-            for (let i = 0; i < tags.length; i++) {
-                tags[i].classList.add('hide');
-            }
-            const user = JSON.parse(localStorage.getItem('token'));
-            const fullname = user.user.name;
-            this.declareUser('fullname',fullname);
-        }else{
-        }
-    }
-
+    
+    /**
+     * 
+     * @param {string} e - The callback message for request response
+     * @param {number} s - The response code for any request
+     */
     static errCall (e,s) {
         const error = document.getElementsByClassName('error');
         if (s == 200 || s == 201) {
@@ -41,7 +40,14 @@ class FastFood {
         }
     }
 
-    static fetchPost (url, headers, body,cb) {
+    /**
+     * 
+     * @param {string} url - Endpoint or URL for sending a request
+     * @param {Object} headers - The required headers for a particular request
+     * @param {Object} body - FormData() or JSON object parsed for request
+     * @param {function} cb - The function triggered after requesting to a URL
+     */
+    static fetchPost (url, headers, body, cb) {
         fetch(path + url, {
             method: 'post',
             headers: headers,
@@ -61,6 +67,10 @@ class FastFood {
         });
     }
 
+    /**
+     * 
+     * @param {Object} body - The FormData() or JSON object parsed for request
+     */
     static signup (body) {
         this.fetchPost(
             '/api/v1/auth/signup',

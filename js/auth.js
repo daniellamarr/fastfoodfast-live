@@ -1,7 +1,7 @@
 const Fast = FastFood;
 
 /**
- * Signup
+ * Signup Function
  */
 function signupFunc () {
     const trigger = (form) => {
@@ -9,6 +9,9 @@ function signupFunc () {
     }
 
     const signupForm = document.getElementById("signupForm");
+    /**
+     * Function to hold all data to be parsed for request
+     */
     const signup = () => {
         const form = {
             name: document.getElementById('name').value,
