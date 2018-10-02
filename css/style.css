@@ -89,8 +89,8 @@ nav ul.s-hide li {
     padding-right: 40px;
 }
 
-.s-hide i.ti-shopping-cart {
-    font-size: 25px;
+.s-hide i.ti-shopping-cart, .ti-user {
+    font-size: 20px;
 }
 
 nav ul.l-hide {
@@ -117,7 +117,7 @@ header.hbg .badge {
 
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 #home {
@@ -196,6 +196,11 @@ header.hbg .badge {
 
 #foods {
     padding: 50px;
+}
+
+#allmenu, #allmenuEdit, #allorders {
+    margin-top: 40px;
+    color: #aaa;
 }
 
 #foods .item {
@@ -593,6 +598,18 @@ table tbody tr td {
     padding-right: 5px;
 }
 
+.error {
+    position: fixed;
+    width: auto;
+    padding: 10px;
+    right: 10px;
+    top: 130px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 /** Footer */
 
 footer {
@@ -834,6 +851,10 @@ footer a:hover {
 
     .modal-content {
         width: 300px;
+    }
+
+    .error {
+        bottom: 3px;
     }
 }
 
