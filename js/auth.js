@@ -56,3 +56,31 @@ function loginFunc () {
         triggerL(login());
     });
 }
+
+/**
+ * Admin Login Function
+ */
+function adminLoginFunc () {
+    const triggerA = (form) => {
+        Fast.adminLogin(form);
+    }
+
+    const adminLoginForm = document.getElementById("adminLoginForm");
+
+    /**
+     * Function to hold all data to be parsed for admin login request
+     */
+    const adminLogin = () => {
+        const form = {
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        }
+
+        return form;
+    }
+
+    adminLoginForm.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        triggerA(adminLogin());
+    });
+}
