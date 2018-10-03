@@ -1,8 +1,15 @@
 const Fast = FastFood;
 
+/**
+ * Function to initialize adding a menu
+ * @param {string} id HTML form element (ID)
+ */
 function uploadImage(id) {
     const formUpll = document.getElementById(id);
 
+    /**
+     * Uploads menu content to the server
+     */
     function upload () {
         var form = new FormData();
         form.append('upload_preset','fastfoodfastpreset')

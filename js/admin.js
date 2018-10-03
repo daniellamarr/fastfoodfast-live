@@ -2,6 +2,12 @@ document.getElementById('toggle').onclick = () => {
     document.getElementById('dropdown').classList.toggle('hide');
 }
 
+/**
+ * Modal Function
+ * @param {string} el - HTML (CLASS) that executes this function when an event occurs
+ * @param {string} attr - HTML attribute to target a div that requires modal initialization
+ * @param {string} event - Event that fires function
+ */
 const modal = (el,attr,event) => {
     const element = document.getElementsByClassName(el);
     for (let i = 0; i < element.length; i++) {
@@ -14,6 +20,11 @@ const modal = (el,attr,event) => {
     }
 }
 
+/**
+ * Close Modal Function
+ * @param {string} el - HTML (ID), modal must have been triggered before function fires
+ * @param {string} event Event that fires function
+ */
 const closeModal = (el,event) => {
     const element = document.getElementById(el);
     document.addEventListener(event,(e)=>{
