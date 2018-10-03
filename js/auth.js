@@ -10,7 +10,7 @@ function signupFunc () {
 
     const signupForm = document.getElementById("signupForm");
     /**
-     * Function to hold all data to be parsed for request
+     * Function to hold all data to be parsed for signup request
      */
     const signup = () => {
         const form = {
@@ -26,5 +26,33 @@ function signupFunc () {
     signupForm.addEventListener("submit", (e)=>{
         e.preventDefault();
         trigger(signup());
+    });
+}
+
+/**
+ * Login Function
+ */
+function loginFunc () {
+    const triggerL = (form) => {
+        Fast.login(form);
+    }
+
+    const loginForm = document.getElementById("loginForm");
+
+    /**
+     * Function to hold all data to be parsed for login request
+     */
+    const login = () => {
+        const form = {
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        }
+
+        return form;
+    }
+
+    loginForm.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        triggerL(login());
     });
 }

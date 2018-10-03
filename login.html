@@ -54,16 +54,22 @@
             <center>
                 <div class="login">
                     <h4>I see you are hungry once again, Please sign in</h4>
-                    <form action="" method="post">
+                    <form id="loginForm" action="" method="post">
                         <input type="email" name="email" id="email" placeholder="Email" required>
                         <input type="password" name="password" id="password" placeholder="Password" required>
-                        <a href="profile.html"><button type="button">Sign in </button></a>
+                        <button>Sign in </button>
                     </form>
                 </div>
             </center>
         </section>
+        <div class="error hide"></div>
     </section>
     
     <script src="js/script.js"></script>
+    <script src="js/class.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        loginFunc();
+    </script>
 </body>
 </html>
