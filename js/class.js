@@ -69,7 +69,7 @@ class FastFood {
 
     /**
      * 
-     * @param {Object} body - The FormData() or JSON object parsed for request
+     * @param {Object} body - The FormData() or JSON object parsed for signup request
      */
     static signup (body) {
         this.fetchPost(
@@ -84,5 +84,29 @@ class FastFood {
                 }
             }
         );
+    }
+
+    /**
+     * 
+     * @param {Object} body The FormData() or JSON object parsed for login request
+     */
+    static login (body) {
+        this.fetchPost(
+            '/api/v1/auth/login',
+            {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body,(res,data) => {
+                if (res==200) {
+                    setTimeout(()=>{window.location.href='index.html'},3000)
+                    const user = {
+                        token: data.token,
+                        user: data.user
+                    }
+                    localStorage.setItem('token',JSON.stringify(user));
+                }
+            }
+        )
     }
 }

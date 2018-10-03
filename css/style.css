@@ -714,6 +714,14 @@ footer a:hover {
     #foods .item .price {
         display: none;
     }
+
+    .error {
+        width: 100%;
+        top: unset;
+        right: 0;
+        bottom: 5px;
+        box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+    }
 }
 
 @media (max-width: 500px) {
@@ -851,10 +859,6 @@ footer a:hover {
 
     .modal-content {
         width: 300px;
-    }
-
-    .error {
-        bottom: 3px;
     }
 }
 
