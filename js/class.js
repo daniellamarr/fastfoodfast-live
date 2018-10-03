@@ -129,4 +129,25 @@ class FastFood {
             }
         )
     }
+
+    /**
+     * 
+     * @param {Object} body The FormData() or JSON object parsed for adding a menu
+     */
+    static addMenu (body) {
+        const adminToken = localStorage.getItem('adminToken');
+        this.fetchPost(
+            '/api/v1/menu',
+            {
+                'Content-Type': 'application/json',
+                'x-access-token': adminToken
+            },
+            body,
+            (res,data) => {
+                if (res==201) {
+                    setTimeout(()=>{window.location.reload(true)},3000);
+                }
+            }
+        )
+    }
 }

@@ -8,8 +8,9 @@ const winScroll = () => {
     }
 }
 
-document.getElementById('toggle').onclick = () => document.getElementById('dropdown').classList.toggle('hide');
-
+document.getElementById('toggle').onclick = () => {
+    document.getElementById('dropdown').classList.toggle('hide');
+}
 
 const shop = document.getElementsByClassName('shoppingcart-b');
 for (let i = 0; i < shop.length; i++) {
@@ -69,12 +70,6 @@ const closeModal = (el,event) => {
         element.classList.remove("modal-show");
     })
 }
-
-modal("addmenubtn","target","click")
-closeModal("addmenu","click")
-
-modal("editmenubtn","target","click")
-closeModal("editmenu","click")
 
 modal("editprofilebtn","target","click")
 closeModal("editprofile","click")

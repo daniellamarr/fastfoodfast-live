@@ -124,10 +124,11 @@
             <center>
                 <div class="modal-content">
                     <h2>Add a new menu</h2>
-                    <form action="">
-                        <input type="text" name="" id="" placeholder="Menu Name">
-                        <input type="number" name="" id="" placeholder="Price">
-                        <input type="number" name="" id="" placeholder="Quantity">
+                    <form id="menuForm" enctype="multipart/form-data">
+                        <input type="text" name="title" id="title" placeholder="Menu Name" required>
+                        <input type="number" name="price" id="price" placeholder="Price" required>
+                        <input type="number" name="quantity" id="quantity" placeholder="Quantity" required>
+                        <input type="file" name="menuImage" id="menuImage" required>
                         <button class="green">Add Menu</button>
                     </form>
                 </div>
@@ -147,8 +148,14 @@
                 </div>
             </center>
         </section>
+        <div class="error"></div>
     </section>
     
-    <script src="../js/script.js"></script>
+    <script src="../js/class.js"></script>
+    <script src="../js/admin.js"></script>
+    <script src="../js/upload.js"></script>
+    <script>
+        uploadImage('menuForm');
+    </script>
 </body>
 </html>
