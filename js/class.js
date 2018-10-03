@@ -109,4 +109,24 @@ class FastFood {
             }
         )
     }
+
+    /**
+     * 
+     * @param {Object} body The FormData() or JSON object parsed for login request
+     */
+    static adminLogin (body) {
+        this.fetchPost(
+            '/api/v1/auth/admin',
+            {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body,(res,data) => {
+                if (res==200) {
+                    setTimeout(()=>{window.location.href='index.html'},3000);
+                    localStorage.setItem('adminToken',data.token);
+                }
+            }
+        )
+    }
 }

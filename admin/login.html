@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fast Food Fast</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli|Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="../css/themify-icons.css">
+</head>
+<body id="loginPage">
+    <section id="container">
+        <header class="hbg">
+            <div class="logo">
+                <h1><a href="index.html">Fast-Food-Fast</a></h1>
+            </div>
+            <nav>
+                <ul class="s-hide">
+                </ul>
+                <ul class="l-hide">
+                </ul>
+            </nav>
+        </header>
+        <div class="height"></div>
+        <section id="login" class="logged">
+            <center>
+                <div class="login">
+                    <h4>This authentication page is reserved only for Admin</h4>
+                    <form id="adminLoginForm" action="" method="post">
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                        <button>Sign in </button>
+                    </form>
+                </div>
+            </center>
+        </section>
+        <div class="error hide"></div>
+    </section>
+    
+    <script src="../js/class.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        adminLoginFunc();
+    </script>
+</body>
+</html>
