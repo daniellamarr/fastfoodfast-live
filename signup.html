@@ -54,19 +54,26 @@
             <center>
                 <div class="login">
                     <h4>Quench your hunger, Sign up today</h4>
-                    <form action="" method="post">
-                        <input type="text" name="firstname" id="firstname" placeholder="Firstname" required>
-                        <input type="text" name="surname" id="surname" placeholder="Surname" required>
+                    <form id="signupForm" action="" method="post">
+                        <input type="text" name="name" id="name" placeholder="Firstname" required>
                         <input type="email" name="email" id="email" placeholder="Email" required>
                         <input type="tel" name="phone" id="phone" placeholder="Phone Number" required>
+                        <input type="tel" name="address" id="address" placeholder="Location" required>
                         <input type="password" name="password" id="password" placeholder="Password" required>
-                        <a href="login.html"><button type="button">Sign up </button></a>
+                        <input type="password" name="cpassword" id="cpassword" placeholder="Password" required>
+                        <button type="submit">Sign up </button>
                     </form>
                 </div>
             </center>
         </section>
+        <div class="error hide"></div>
     </section>
     
     <script src="js/script.js"></script>
+    <script src="js/class.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        signupFunc();
+    </script>
 </body>
 </html>
