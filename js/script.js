@@ -1,3 +1,6 @@
+/**
+ * Function to animate HEADER tag when there is scroll movement
+ */
 const winScroll = () => {
     window.onscroll = () => {
         if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
@@ -8,8 +11,9 @@ const winScroll = () => {
     }
 }
 
-document.getElementById('toggle').onclick = () => document.getElementById('dropdown').classList.toggle('hide');
-
+document.getElementById('toggle').onclick = () => {
+    document.getElementById('dropdown').classList.toggle('hide');
+}
 
 const shop = document.getElementsByClassName('shoppingcart-b');
 for (let i = 0; i < shop.length; i++) {
@@ -20,6 +24,10 @@ for (let i = 0; i < shop.length; i++) {
     }
 }
 
+/**
+ * Add to Cart Function
+ * @param {number} num - Number of items in cart
+ */
 let cart = (num) => {
     let props ="";
     for (let k = 0; k < num; k++) {
@@ -50,6 +58,12 @@ for (let i = 0; i < addtocart.length; i++) {
     }
 }
 
+/**
+ * Modal Function
+ * @param {string} el - HTML (CLASS) that executes this function when an event occurs
+ * @param {string} attr - HTML attribute to target a div that requires modal initialization
+ * @param {string} event - Event that fires function
+ */
 const modal = (el,attr,event) => {
     const element = document.getElementsByClassName(el);
     for (let i = 0; i < element.length; i++) {
@@ -62,6 +76,11 @@ const modal = (el,attr,event) => {
     }
 }
 
+/**
+ * Close Modal Function
+ * @param {string} el - HTML (ID), modal must have been triggered before function fires
+ * @param {string} event Event that fires function
+ */
 const closeModal = (el,event) => {
     const element = document.getElementById(el);
     document.addEventListener(event,(e)=>{
@@ -69,12 +88,6 @@ const closeModal = (el,event) => {
         element.classList.remove("modal-show");
     })
 }
-
-modal("addmenubtn","target","click")
-closeModal("addmenu","click")
-
-modal("editmenubtn","target","click")
-closeModal("editmenu","click")
 
 modal("editprofilebtn","target","click")
 closeModal("editprofile","click")
