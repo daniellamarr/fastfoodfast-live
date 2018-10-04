@@ -8,10 +8,35 @@ const path = 'https://daniellamarr-fast-food-fast.herokuapp.com';
  * consume endpoints, and support server side queries
  */
 class FastFood {
+    /**
+     * Sends user data to HTML classes
+     * @param {string} className - HTML class to hold user data
+     * @param {string} str - User data to be passed
+     */
     static declareUser (className,str) {
         const cl = document.getElementsByClassName(className);
         for (let i = 0; i < cl.length; i++) {
             cl[i].innerHTML = str;
+        }
+    }
+
+    /**
+     * User initialization - Checks if a user is logged in
+     */
+    static initUser () {
+        if (localStorage.getItem('token')!=null) {
+            const tags = document.getElementsByClassName('user-login');
+            for (let i = 0; i < tags.length; i++) {
+                tags[i].classList.add('hide');
+            }
+            const user = JSON.parse(localStorage.getItem('token'));
+            const fullname = user.user.name;
+            this.declareUser('fullname',fullname);
+        }else{
+            const tags = document.getElementsByClassName('user-logout');
+            for (let i = 0; i < tags.length; i++) {
+                tags[i].classList.add('hide');
+            }
         }
     }
     
@@ -217,4 +242,37 @@ class FastFood {
             }
         )
     }
+
+    /**
+     * Function to place an order
+     * @param {Object} body The FormData() or JSON object parsed for placing an order
+     */
+    static placeOrder (body) {
+        let user;
+        const usertoken = localStorage.getItem('token');
+        if (usertoken==null) {
+            FastFood.errCall('User has to be logged in before making an order',401);
+            setTimeout(()=>{window.location.href="login.html"},3000);
+            return;
+        }else{
+            user = JSON.parse(usertoken);
+        }
+        const token = user.token;
+        this.fetchPost(
+            '/api/v1/orders',
+            {
+                'Content-Type': 'application/json',
+                'x-access-token': token
+            },
+            body,
+            (res,data) => {
+                if (res==201) {
+                    localStorage.removeItem('items');
+                    setTimeout(()=>{window.location.href="index.html"},3000);
+                }
+            }
+        )
+    }
 }
+
+FastFood.initUser();

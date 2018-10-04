@@ -20,8 +20,14 @@
                     <li>
                         <a href="javascript:;" id="shoppingcart-b" class="shoppingcart-b"><i class="ti-shopping-cart"></i> <sup><span class="badge itemsincart">0</span></sup></a>
                     </li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="signup.html">Sign Up</a></li>
+                    <li class="user-logout">
+                        <a href="profile.html"><i class="ti-user"></i></a>
+                    </li>
+                    <li class="user-logout">
+                        <a href="javascript:;" id="logout"><i class="ti-power-off"></i></a>
+                    </li>
+                    <li class="user-login"><a href="login.html">Login</a></li>
+                    <li class="user-login"><a href="signup.html">Sign Up</a></li>
                 </ul>
                 <div id="shoppingcart" class="cart-div hide">
                     <p>You have <span class="itemsincart">0</span> item(s)</p>
@@ -37,12 +43,14 @@
                     <li>
                         <a href="javascript:;" id="shoppingcart-b" class="shoppingcart-b"><i class="ti ti-shopping-cart"></i><sup class="itemsincart">0</sup></a>
                     </li>
-                    <li>
-                        <a href="javascript:;" class="menu" id="toggle"><i class="ti ti-menu"></i></a>
+                    <li class="">
+                        <a href="javascript:;" class="menu" id="toggle"><i class="ti ti-user"></i></a>
                         <div class="dropdown hide" id="dropdown">
                             <ul>
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="signup.html">Sign Up</a></li>
+                                <li class="user-logout"><a href="profile.html">Profile</a></li>
+                                <li class="user-logout"><a href="javascript:;" id="logout">Logout</a></li>
+                                <li class="user-login"><a href="login.html">Login</a></li>
+                                <li class="user-login"><a href="signup.html">Sign Up</a></li>
                             </ul>
                         </div>
                     </li>
