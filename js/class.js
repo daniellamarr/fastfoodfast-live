@@ -16,7 +16,7 @@ class FastFood {
     }
     
     /**
-     * 
+     * Error or success callback
      * @param {string} e - The callback message for request response
      * @param {number} s - The response code for any request
      */
@@ -41,7 +41,7 @@ class FastFood {
     }
 
     /**
-     * 
+     * FETCH API - Post Request
      * @param {string} url - Endpoint or URL for sending a request
      * @param {Object} headers - The required headers for a particular request
      * @param {Object} body - FormData() or JSON object parsed for request
@@ -57,6 +57,30 @@ class FastFood {
             (response) => {
                 response.json().then(function(data) {
                     FastFood.errCall(data.message,response.status)
+                    cb(response.status,data);
+                    return response.status;
+                });
+            }
+        )
+        .catch((err) => {
+            FastFood.errCall('Connection to the server failed',500);
+        });
+    }
+
+    /**
+     * FETCH API - Get Request
+     * @param {string} url - Endpoint or URL for sending a request
+     * @param {Object} headers - The required headers for a particular request
+     * @param {function} cb - The function triggered after requesting to a URL
+     */
+    static fetchGet (url, headers, cb) {
+        fetch(path + url, {
+            method: 'get',
+            headers: headers
+        })
+        .then(
+            (response) => {
+                response.json().then(function(data) {
                     cb(response.status,data);
                     return response.status;
                 });
@@ -146,6 +170,49 @@ class FastFood {
             (res,data) => {
                 if (res==201) {
                     setTimeout(()=>{window.location.reload(true)},3000);
+                }
+            }
+        )
+    }
+
+    /**
+     * 
+     * @param {string} page - Pass ID of page, Checks which page is requesting for all menu
+     */
+    static getAllMenu (page) {
+        this.fetchGet(
+            '/api/v1/menu',
+            {},
+            (res,data) => {
+                if (res==404) {
+                    document.getElementById(page).innerHTML = 
+                    '<center><h2>'+data.message+'</h2></center>';
+                }else{
+                    const menu = data.menu;
+                    let all = "";
+                    menu.forEach(x => {
+                        const first = '<div class="item">'+
+                            '<img src="'+x.image+'" alt="">'+
+                            '<div class="item-text">'+
+                                '<a href="">'+x.title+'</a>'+
+                            '</div>';
+                        let pricetag;
+                        if (page=="allmenu") {
+                            pricetag = '<div class="price-tag">'+
+                                    '<button class="price">N'+x.price+'</button>'+
+                                    '<button class="addtocart"'+
+                                    'onclick="addToCart(this.value,'+x.price+',\''+x.image+'\')"'+
+                                    'value="'+x.title+'">Add to cart</button>'+
+                                '</div>'+
+                            '</div>';
+                        }else if (page=="allmenuEdit") {
+                            pricetag = '<div class="price-tag">'+
+                                '<button class="editmenubtn" target="editmenu">Edit</button>'+
+                            '</div></div>';
+                        }
+                        all += first+pricetag;
+                    });
+                    document.getElementById(page).innerHTML = all;
                 }
             }
         )
