@@ -20,8 +20,14 @@
                     <li>
                         <a href="javascript:;" id="shoppingcart-b" class="shoppingcart-b"><i class="ti-shopping-cart"></i> <sup><span class="badge itemsincart">0</span></sup></a>
                     </li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="signup.html">Sign Up</a></li>
+                    <li class="user-logout">
+                        <a href="profile.html"><i class="ti-user"></i></a>
+                    </li>
+                    <li class="user-logout">
+                        <a href="javascript:;" id="logout"><i class="ti-power-off"></i></a>
+                    </li>
+                    <li class="user-login"><a href="login.html">Login</a></li>
+                    <li class="user-login"><a href="signup.html">Sign Up</a></li>
                 </ul>
                 <div id="shoppingcart" class="cart-div hide">
                     <p>You have <span class="itemsincart">0</span> item(s)</p>
@@ -37,11 +43,14 @@
                     <li>
                         <a href="javascript:;" id="shoppingcart-b" class="shoppingcart-b"><i class="ti ti-shopping-cart"></i><sup class="itemsincart">0</sup></a>
                     </li>
-                    <li>
-                        <a href="javascript:;" class="menu" id="toggle"><i class="ti ti-menu"></i></a>
+                    <li class="">
+                        <a href="javascript:;" class="menu" id="toggle"><i class="ti ti-user"></i></a>
                         <div class="dropdown hide" id="dropdown">
                             <ul>
-                                <li><a href="login.html">Logout</a></li>
+                                <li class="user-logout"><a href="profile.html">Profile</a></li>
+                                <li class="user-logout"><a href="javascript:;" id="logout">Logout</a></li>
+                                <li class="user-login"><a href="login.html">Login</a></li>
+                                <li class="user-login"><a href="signup.html">Sign Up</a></li>
                             </ul>
                         </div>
                     </li>
@@ -54,19 +63,16 @@
                     <div class="profileImage"></div>
                 </center>
             </div>
-            <div class="profileButtons">
-                <button class="editprofilebtn green" target="editprofile">Edit Profile</button>
-            </div>
         </section>
         <section id="profile-bar"></section>
         <section id="profile-section">
             <div class="profileDetails">
                 <h3>Your Details</h3>
                 <ul>
-                    <li>Name: John Doe</li>
-                    <li>Email: johndoe@gmail.com</li>
-                    <li>Phone: +2348135700797</li>
-                    <li>Delivery Address: Unilag</li>
+                    <li>Name: <span class="fullname"></span></li>
+                    <li>Email: <span class="email"></span></li>
+                    <li>Phone: <span class="phone"></span></li>
+                    <li>Delivery Address: <span class="address"></span></li>
                 </ul>
             </div>
             <div class="profileOrders">
@@ -75,41 +81,11 @@
                     <table class="order-table">
                         <thead>
                             <th>ID</th>
-                            <th>Order No</th>
-                            <th>Product</th>
-                            <th>Price</th>
+                            <th>Products</th>
+                            <th>Price(N)</th>
                             <th>Status</th>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>#30303</td>
-                                <td>Chicken</td>
-                                <td>3000</td>
-                                <td><span class="badge">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>#30303</td>
-                                <td>Chicken</td>
-                                <td>3000</td>
-                                <td><span class="badge">Accepted</span></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>#30303</td>
-                                <td>Chicken</td>
-                                <td>3000</td>
-                                <td><span class="badge">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>#30303</td>
-                                <td>Chicken</td>
-                                <td>3000</td>
-                                <td><span class="badge">Rejected</span></td>
-                            </tr>
-                        </tbody>
+                        <tbody id="userorders"></tbody>
                     </table>
                 </div>
             </div>
@@ -137,6 +113,10 @@
         </section>
     </section>
     
+    <script src="js/class.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        userorders();
+    </script>
 </body>
 </html>

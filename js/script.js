@@ -29,7 +29,7 @@ for (let i = 0; i < shop.length; i++) {
  * @param {number} num - Number of items in cart
  * @param {string} title - Title of the item
  */
-let cart = (num,title) => {
+const cart = (num,title) => {
     let props ="";
     for (let k = 0; k < num; k++) {
         props += '<li>'+
@@ -50,7 +50,7 @@ let cart = (num,title) => {
  * @param {number} p - Price of Item
  * @param {string} img - Image of Item
  */
-let checkAndAdd = (name,arr,p,img) => {
+const checkAndAdd = (name,arr,p,img) => {
     var found = arr.some(function (el) {
       return el.order === name;
     });
@@ -179,6 +179,16 @@ const cartorders = () => {
         }
         FastFood.placeOrder(item);
     })
+}
+
+/**
+ * Send a request to get all user orders
+ */
+function userorders () {
+    const user = JSON.parse(localStorage.getItem('token'));
+    const token = user.token;
+    const decoded = FastFood.parseJwt(token);
+    FastFood.getUserOrders(decoded.id);
 }
 
 /**

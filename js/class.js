@@ -32,6 +32,9 @@ class FastFood {
             const user = JSON.parse(localStorage.getItem('token'));
             const fullname = user.user.name;
             this.declareUser('fullname',fullname);
+            this.declareUser('email',user.user.email);
+            this.declareUser('phone',user.user.phone);
+            this.declareUser('address',user.user.address);
         }else{
             const tags = document.getElementsByClassName('user-logout');
             for (let i = 0; i < tags.length; i++) {
@@ -39,6 +42,16 @@ class FastFood {
             }
         }
     }
+
+    /**
+     * Function to decode a JWT
+     * @param {string} token - User Token to be decoded
+     */
+    static parseJwt (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    };
     
     /**
      * Error or success callback
@@ -269,6 +282,42 @@ class FastFood {
                 if (res==201) {
                     localStorage.removeItem('items');
                     setTimeout(()=>{window.location.href="index.html"},3000);
+                }
+            }
+        )
+    }
+
+    /**
+     * Get all orders of a particualar user
+     * @param {number} id - User ID
+     */
+    static getUserOrders (id) {
+        const user = JSON.parse(localStorage.getItem('token'));
+        const token = user.token;
+        this.fetchGet(
+            `/api/v1/users/${id}/orders`,
+            {
+                'Content-Type': 'application/json',
+                'x-access-token': token
+            },
+            (res,data) => {
+                if (res==200) {
+                    let dat = '';
+                    data.order.forEach(x => {
+                        let b = '';
+                        const food = x.food;
+                        food.forEach(a => {
+                            b += a.orderid+'<br>';
+                        });
+                        dat += '<tr>'+
+                            '<td>'+x.id+'</td>'+
+                            '<td>'+b+'</td>'+
+                            '<td>'+x.price+'</td>'+
+                            '<td><span class="badge">'+x.status+'</span></td>'+
+                        '</tr>'
+                    });
+                    document.getElementById('userorders').innerHTML = dat;
+                    console.log(data)
                 }
             }
         )
