@@ -27,6 +27,7 @@ for (let i = 0; i < shop.length; i++) {
 /**
  * Add to Cart Function
  * @param {number} num - Number of items in cart
+ * @param {string} title - Title of the item
  */
 let cart = (num,title) => {
     let props ="";
@@ -104,6 +105,7 @@ let item;
 if (localStorage.getItem('items')==null) {
     item = [];
     document.getElementById("cartorders").innerHTML = 'No item(s) in cart';
+    document.getElementById("ordernow").classList.add('hide');
 }else{
     item = JSON.parse(localStorage.getItem('items'));
     let props = "";
