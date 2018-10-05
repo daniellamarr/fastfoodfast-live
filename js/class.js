@@ -93,6 +93,8 @@ class FastFood {
         })
         .then(
             (response) => {
+                const loader = document.getElementById('loader');
+                loader.classList.add('hide');
                 response.json().then(function(data) {
                     FastFood.errCall(data.message,response.status)
                     cb(response.status,data);
@@ -101,6 +103,7 @@ class FastFood {
             }
         )
         .catch((err) => {
+            loader.classList.add('hide');
             FastFood.errCall('Connection to the server failed',500);
         });
     }
@@ -142,7 +145,7 @@ class FastFood {
             },
             body,(res) => {
                 if (res==201) {
-                    setTimeout(()=>{window.location.href='login.html'},3000)
+                    setTimeout(()=>{window.location.href='login.html'},1200)
                 }
             }
         );
@@ -161,7 +164,7 @@ class FastFood {
             },
             body,(res,data) => {
                 if (res==200) {
-                    setTimeout(()=>{window.location.href='index.html'},3000)
+                    setTimeout(()=>{window.location.href='index.html'},1200)
                     const user = {
                         token: data.token,
                         user: data.user
@@ -185,7 +188,7 @@ class FastFood {
             },
             body,(res,data) => {
                 if (res==200) {
-                    setTimeout(()=>{window.location.href='index.html'},3000);
+                    setTimeout(()=>{window.location.href='index.html'},1200);
                     localStorage.setItem('adminToken',data.token);
                 }
             }
@@ -207,7 +210,7 @@ class FastFood {
             body,
             (res,data) => {
                 if (res==201) {
-                    setTimeout(()=>{window.location.reload(true)},3000);
+                    setTimeout(()=>{window.location.reload(true)},1200);
                 }
             }
         )
@@ -265,7 +268,7 @@ class FastFood {
         const usertoken = localStorage.getItem('token');
         if (usertoken==null) {
             FastFood.errCall('User has to be logged in before making an order',401);
-            setTimeout(()=>{window.location.href="login.html"},3000);
+            setTimeout(()=>{window.location.href="login.html"},1200);
             return;
         }else{
             user = JSON.parse(usertoken);
@@ -281,7 +284,7 @@ class FastFood {
             (res,data) => {
                 if (res==201) {
                     localStorage.removeItem('items');
-                    setTimeout(()=>{window.location.href="index.html"},3000);
+                    setTimeout(()=>{window.location.href="index.html"},1200);
                 }
             }
         )
@@ -301,6 +304,7 @@ class FastFood {
                 'x-access-token': token
             },
             (res,data) => {
+                document.getElementById('ordersload').classList.add('hide');
                 if (res==200) {
                     let dat = '';
                     data.order.forEach(x => {
@@ -313,7 +317,7 @@ class FastFood {
                             '<td>'+x.id+'</td>'+
                             '<td>'+b+'</td>'+
                             '<td>'+x.price+'</td>'+
-                            '<td><span class="badge">'+x.status+'</span></td>'+
+                            '<td>'+x.status+'</td>'+
                         '</tr>'
                     });
                     document.getElementById('userorders').innerHTML = dat;
@@ -407,7 +411,7 @@ class FastFood {
                 response.json().then(function(data) {
                     FastFood.errCall(data.message,response.status)
                     if (response.status===200) {
-                        setTimeout(()=>{window.location.reload(true)},3000);
+                        setTimeout(()=>{window.location.reload(true)},1200);
                     }
                     return response.status;
                 });
