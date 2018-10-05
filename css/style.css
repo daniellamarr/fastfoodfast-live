@@ -472,7 +472,6 @@ header.hbg .badge {
 
 table {
     width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .table {
@@ -493,9 +492,13 @@ table tbody {
 }
 
 table tbody tr td {
-    background-color: #aaa;
+    background-color: #fff;
     padding: 15px;
-    color: #fff;
+    color: #333;
+}
+
+table li {
+    list-style: none;
 }
 
 /** Login **/

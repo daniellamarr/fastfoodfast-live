@@ -322,6 +322,71 @@ class FastFood {
             }
         )
     }
+
+    /**
+     * Checks an order status and initializes function to update order
+     * @param {string} stat - Order status
+     * @param {number} id - Order status to be updated
+     */
+    static checkStatus (stat,id) {
+        let status;
+        if (stat==='new') {
+            status = '<button class="green" onclick="orderStatus(\'processing\','+id+')">Approve</button>'+
+            '<button class="red" onclick="orderStatus(\'cancelled\','+id+')">Cancel</button>';
+        }
+        if (stat==='processing') {
+            status = '<button class="green" onclick="orderStatus(\'complete\','+id+')">Finish Order</button>'+
+            '<button class="red" onclick="orderStatus(\'cancelled\','+id+')">Cancel</button>';
+        }
+        if (stat==='cancelled') {
+            status = '<button class="blue" onclick="orderStatus(\'new\','+id+')">Revert cancel</button>';
+        }
+        if (stat==='complete') {
+            status = '<button class="green">Order Completed</button>';
+        }
+
+        return status;
+    }
+
+    /**
+     * And admin can fetch all orders on the app
+     */
+    static getAllOrders () {
+        const adminToken = localStorage.getItem('adminToken');
+        this.fetchGet(
+            '/api/v1/orders',
+            {
+                'x-access-token': adminToken
+            },
+            (res,data) => {
+                const allorders = document.getElementById('allorders');
+                document.getElementById('ordersload').classList.add('hide');
+                if (res==404) {
+                    allorders.innerHTML = 
+                    '<center><h2>'+data.message+'</h2></center>';
+                }else{
+                    const orders = data.orders;
+                    let all = "";
+                    orders.forEach(x => {
+                        let b = "";
+                        const food = x.food;
+                        food.forEach(a => {
+                            b += '<div class="tags"><li>'+a.orderid+'</li></div>';
+                        });
+                        all += '<tr>'+
+                            '<td>'+x.id+'</td>'+
+                            '<td>'+x.user.name+'</td>'+
+                            '<td>'+b+'</td>'+
+                            '<td>'+x.price+'</td>'+
+                            '<td>'+x.status+'</td>'+
+                            '<td>'+this.checkStatus(x.status,x.id)+'</td>'+
+                        '</tr>';
+                    });
+                    allorders.innerHTML = all;
+                }
+            }
+        )
+    }
 }
 
 FastFood.initUser();
