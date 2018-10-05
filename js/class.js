@@ -317,7 +317,6 @@ class FastFood {
                         '</tr>'
                     });
                     document.getElementById('userorders').innerHTML = dat;
-                    console.log(data)
                 }
             }
         )
@@ -386,6 +385,37 @@ class FastFood {
                 }
             }
         )
+    }
+
+    /**
+     * Updates the status of an order
+     * @param {string} body - The FormData() or JSON object parsed for updating an order status
+     * @param {number} id - Order ID to be updated
+     */
+    static updateStatus (body,id) {
+        const adminToken = localStorage.getItem('adminToken');
+        fetch(path + `/api/v1/orders/${id}`, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': adminToken
+            },
+            body: JSON.stringify(body)
+        })
+        .then(
+            (response) => {
+                response.json().then(function(data) {
+                    FastFood.errCall(data.message,response.status)
+                    if (response.status===200) {
+                        setTimeout(()=>{window.location.reload(true)},3000);
+                    }
+                    return response.status;
+                });
+            }
+        )
+        .catch((err) => {
+            FastFood.errCall('Connection to the server failed',500);
+        });
     }
 }
 
