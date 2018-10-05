@@ -46,77 +46,10 @@
                 <button class="addmenubtn" target="addmenu">Add New Menu</button>
             </div>
             <div id="foods" class="foods">
-                <div class="item">
-                    <img src="../images/2.jpeg" alt="">
-                    <div class="item-text">
-                        <a href="">Hamburger</a>
-                    </div>
-                    <div class="price-tag">
-                        <button class="editmenubtn" target="editmenu">Edit</button>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="../images/2.jpeg" alt="">
-                    <div class="item-text">
-                        <a href="">Hamburger</a>
-                    </div>
-                    <div class="price-tag">
-                        <button class="editmenubtn" target="editmenu">Edit</button>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="../images/2.jpeg" alt="">
-                    <div class="item-text">
-                        <a href="">Hamburger</a>
-                    </div>
-                    <div class="price-tag">
-                        <button class="editmenubtn" target="editmenu">Edit</button>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="../images/2.jpeg" alt="">
-                    <div class="item-text">
-                        <a href="">Hamburger</a>
-                    </div>
-                    <div class="price-tag">
-                        <button class="editmenubtn" target="editmenu">Edit</button>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="../images/2.jpeg" alt="">
-                    <div class="item-text">
-                        <a href="">Hamburger</a>
-                    </div>
-                    <div class="price-tag">
-                        <button class="editmenubtn" target="editmenu">Edit</button>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="../images/2.jpeg" alt="">
-                    <div class="item-text">
-                        <a href="">Hamburger</a>
-                    </div>
-                    <div class="price-tag">
-                        <button class="editmenubtn" target="editmenu">Edit</button>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="../images/2.jpeg" alt="">
-                    <div class="item-text">
-                        <a href="">Hamburger</a>
-                    </div>
-                    <div class="price-tag">
-                        <button class="editmenubtn" target="editmenu">Edit</button>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="../images/2.jpeg" alt="">
-                    <div class="item-text">
-                        <a href="">Hamburger</a>
-                    </div>
-                    <div class="price-tag">
-                        <button class="editmenubtn" target="editmenu">Edit</button>
-                    </div>
+                <div id="allmenuEdit">
+                    <center>
+                        <img src="../images/loader.gif" alt="loading..." width="150px">
+                    </center>
                 </div>
             </div>
         </section>
@@ -155,6 +88,7 @@
     <script src="../js/admin.js"></script>
     <script src="../js/upload.js"></script>
     <script>
+        FastFood.getAllMenu('allmenuEdit');
         uploadImage('menuForm');
     </script>
 </body>
