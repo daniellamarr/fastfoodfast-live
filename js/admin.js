@@ -42,6 +42,8 @@ function orderStatus (stat,id) {
     const body = {
         status: stat
     }
+    const loader = document.getElementById('loader');
+    loader.classList.remove('hide');
     FastFood.updateStatus(body,id);
 }
 
