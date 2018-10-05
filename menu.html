@@ -11,6 +11,11 @@
 </head>
 <body>
     <section id="container">
+        <div id="loader" class="">
+            <center>
+                <img src="images/loader.gif" alt="loader..." width="80px">
+            </center>
+        </div>
         <header class="hbg">
             <div class="logo">
                 <h1><a href="index.html">Fast-Food-Fast</a></h1>
@@ -57,41 +62,22 @@
                 </ul>
             </nav>
         </header>
-        <section id="profile">
-            <div class="profile">
-                <center>
-                    <div class="profileImage"></div>
-                </center>
+        <section id="menudetails">
+            <div class="title">
+                <h1 id="menuname"></h1>
+                <p><span id="menuqty"></span> item(s) remaining in stock</p>
+                <button>N<span id="menuprice"></span></button>
+                <button id="menubtn" class="addtocart">Add to cart</button>
             </div>
         </section>
-        <section id="profile-bar"></section>
-        <section id="profile-section">
-            <div class="profileDetails">
-                <h3>Your Details</h3>
-                <ul>
-                    <li>Name: <span class="fullname"></span></li>
-                    <li>Email: <span class="email"></span></li>
-                    <li>Phone: <span class="phone"></span></li>
-                    <li>Delivery Address: <span class="address"></span></li>
-                </ul>
+        <section id="foods">
+            <div class="title">
+                <h2>More varieties</h2><hr class="div">
             </div>
-            <div class="profileOrders">
-                <h3>Your Orders</h3>
-                <div class="table">
-                    <table class="order-table">
-                        <thead>
-                            <th>ID</th>
-                            <th>Products</th>
-                            <th>Price(N)</th>
-                            <th>Status</th>
-                        </thead>
-                        <tbody id="userorders">
-                            <center id="ordersload">
-                                <img src="images/loader.gif" alt="loading..." width="80px">
-                            </center>
-                        </tbody>
-                    </table>
-                </div>
+            <div id="allmenu">
+                <center>
+                    <img src="images/loader.gif" alt="loading..." width="80px">
+                </center>
             </div>
             <div class="clear"></div>
         </section>
@@ -101,29 +87,14 @@
                 <p>Developed by <a href="https://github.com/daniellamarr" target="_blank">Daniel Lamarr</a></p>
             </div>
         </footer>
-        <section id="editprofile" class="modal">
-            <center>
-                <div class="modal-content">
-                    <h2>Edit menu</h2>
-                    <form action="">
-                        <input type="text" name="name" id="name" placeholder="Name" required>
-                        <input type="email" name="email" id="email" placeholder="Email" required>
-                        <input type="tel" name="phone" id="phone" placeholder="Phone" required>
-                        <textarea name="address" id="address" cols="30" rows="10" placeholder="Address"></textarea>
-                        <button class="green">Save Changes</button>
-                    </form>
-                </div>
-            </center>
-        </section>
+        <div class="error hide"></div>
     </section>
     
     <script src="js/class.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/menu.js"></script>
     <script>
-        if (localStorage.getItem('token')==null) {
-            window.location.replace('login.html');
-        }
-        userorders();
+        FastFood.getAllMenu('allmenu');
         FastFood.logout('token');
     </script>
 </body>
