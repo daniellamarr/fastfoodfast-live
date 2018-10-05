@@ -172,6 +172,8 @@ const cartorders = () => {
     const ordernow = document.getElementById('ordernow');
 
     ordernow.addEventListener('click', () => {
+        const loader = document.getElementById('loader');
+        loader.classList.remove('hide');
         const i = localStorage.getItem('items');
         const items = JSON.parse(`${i}`)
         const item = {

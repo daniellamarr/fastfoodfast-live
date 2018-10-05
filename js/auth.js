@@ -1,5 +1,7 @@
 const Fast = FastFood;
 
+const loader = document.getElementById('loader');
+
 /**
  * Signup Function
  */
@@ -25,6 +27,7 @@ function signupFunc () {
     }
     signupForm.addEventListener("submit", (e)=>{
         e.preventDefault();
+        loader.classList.remove('hide');
         trigger(signup());
     });
 }
@@ -53,6 +56,7 @@ function loginFunc () {
 
     loginForm.addEventListener("submit", (e)=>{
         e.preventDefault();
+        loader.classList.remove('hide');
         triggerL(login());
     });
 }
@@ -81,6 +85,7 @@ function adminLoginFunc () {
 
     adminLoginForm.addEventListener("submit", (e)=>{
         e.preventDefault();
+        loader.classList.remove('hide');
         triggerA(adminLogin());
     });
 }

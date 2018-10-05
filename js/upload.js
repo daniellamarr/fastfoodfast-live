@@ -1,5 +1,7 @@
 const Fast = FastFood;
 
+const loader = document.getElementById('loader');
+
 /**
  * Function to initialize adding a menu
  * @param {string} id HTML form element (ID)
@@ -36,12 +38,14 @@ function uploadImage(id) {
             }
         )
         .catch((err) => {
-            console.log('Fetch Error :-S', err);
+            loader.classList.add('hide');
+            FastFood.errCall('Connection to the server failed',500);
         });
     }
     
     formUpll.addEventListener("submit", (e)=>{
         e.preventDefault();
+        loader.classList.remove('hide');
         upload();
     });
 }
