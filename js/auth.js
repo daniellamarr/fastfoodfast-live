@@ -89,3 +89,21 @@ function adminLoginFunc () {
         triggerA(adminLogin());
     });
 }
+
+/**
+ * Checks if a user is already logged in
+ */
+function checkUserLogin() {
+    if (localStorage.getItem('token')!=null) {
+        window.location.replace('index.html');
+    }
+}
+
+/**
+ * Check if an admin is logged in
+ */
+function checkAdminLogin() {
+    if (localStorage.getItem('adminToken')!=null) {
+        window.location.replace('index.html');
+    }
+}

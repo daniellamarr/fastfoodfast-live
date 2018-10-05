@@ -33,6 +33,15 @@ const closeModal = (el,event) => {
     })
 }
 
+/**
+ * Check if user is logged out
+ */
+function checkAdminLogout() {
+    if (localStorage.getItem('adminToken')==null) {
+        window.location.replace('login.html');
+    }
+}
+
 modal("addmenubtn","target","click")
 closeModal("addmenu","click")
 
