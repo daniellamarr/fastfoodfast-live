@@ -34,6 +34,18 @@ const closeModal = (el,event) => {
 }
 
 /**
+ * Function; sends the request body to update order status
+ * @param {string} stat - Order status
+ * @param {number} id - Order status to be updated
+ */
+function orderStatus (stat,id) {
+    const body = {
+        status: stat
+    }
+    FastFood.updateStatus(body,id);
+}
+
+/**
  * Check if user is logged out
  */
 function checkAdminLogout() {
