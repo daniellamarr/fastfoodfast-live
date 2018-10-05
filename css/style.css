@@ -467,6 +467,10 @@ header.hbg .badge {
     padding-bottom: 5px;
 }
 
+#ordernow {
+    font-size: 20px;
+}
+
 .order-table{
     margin: 20px;
     margin-left: 0;
@@ -509,6 +513,11 @@ table tbody tr td {
 
 table li {
     list-style: none;
+}
+
+.tabletotal td {
+    background-color: #333;
+    color: #fff;
 }
 
 /** Login **/
@@ -570,6 +579,10 @@ table li {
 
 .white-text {
     color: #fff;
+}
+
+.red-text {
+    color: rgb(187, 48, 24) !important;
 }
 
 .h-questions {

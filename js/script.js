@@ -62,7 +62,8 @@ const checkAndAdd = (name,arr,p,img) => {
             image: img
         })
     }else{
-        alert('You have added this item already')
+        const index = arr.findIndex(x => x.order==name);
+        arr[index].quantity = arr[index].quantity + 1;
         return true;
     }
 }
@@ -110,7 +111,9 @@ if (localStorage.getItem('items')==null) {
     item = JSON.parse(localStorage.getItem('items'));
     let props = "";
     let props2 = "";
-    item.forEach(x => {
+    let total = [];
+    for (let i = 0; i < item.length; i++) {
+        const x = item[i];
         props += '<li>'+
             '<a href="">'+
                 '<img src="'+x.image+'" alt="">'+
@@ -124,15 +127,21 @@ if (localStorage.getItem('items')==null) {
             '<td>'+x.quantity+'</td>'+
             '<td>'+x.price+'</td>'+
             '<td>'+(x.price*x.quantity)+'</td>'+
+            '<td><a class="red-text" href="javascript:;" onclick="popCart('+i+')"><i class="ti-close"></i></a></td>'+
         '</tr>';
-    })
+        total.push(x.price*x.quantity);
+    }
+    const tot = total.reduce((total,num)=> total+num);
+    const props3 = '<tr class="tabletotal">'+
+        '<td colspan="4">Total:</td>'+
+        '<td>'+tot+'</td><td></tr>';
     const itemsincart = document.getElementsByClassName('itemsincart');
     for (let j = 0; j < itemsincart.length; j++) {
         const itemsincartx = itemsincart[j];
         itemsincartx.innerHTML = item.length;
     }
     document.getElementById("cart-details").innerHTML = props;
-    document.getElementById("cartorders").innerHTML = props2;
+    document.getElementById("cartorders").innerHTML = props2+props3;
 }
 
 /**
@@ -163,6 +172,19 @@ function addToCart (cl,p,img) {
     }
     document.getElementById("cart-details").innerHTML = props;
     localStorage.setItem('items',JSON.stringify(item));
+}
+
+/**
+ * Function to delete an item from user shopping cart
+ * @param {number} num - The index of the item to be deleted from cart
+ */
+function popCart (num) {
+    item.splice(num,1);
+    localStorage.setItem('items',JSON.stringify(item));
+    if (item.length===0) {
+        localStorage.removeItem('items');
+    }
+    window.location.reload(true);
 }
 
 /**
