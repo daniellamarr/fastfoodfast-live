@@ -194,18 +194,6 @@ function userorders () {
 }
 
 /**
- * Function; sends the request body to update order status
- * @param {string} stat - Order status
- * @param {number} id - Order status to be updated
- */
-function orderStatus (stat,id) {
-    const body = {
-        status: stat
-    }
-    FastFood.updateStatus(body,id);
-}
-
-/**
  * Close Modal Function
  * @param {string} el - HTML (ID), modal must have been triggered before function fires
  * @param {string} event Event that fires function
