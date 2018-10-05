@@ -225,6 +225,7 @@ header.hbg .badge {
     width: 100%;
     height: 150px;
     cursor: pointer;
+    filter: grayscale(50%);
     transition: 0.3s all;
 }
 
@@ -237,7 +238,7 @@ header.hbg .badge {
 }
 
 #foods .item img:hover {
-    filter: grayscale(100%);
+    filter: unset;
     transform: scale(1.1,1.1);
 }
 
@@ -306,6 +307,35 @@ header.hbg .badge {
 }
 
 #order .title button {
+    margin-top: 10px;
+}
+
+#menudetails {
+    width: 100%;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+#menudetails .title {
+    text-align: center;
+    color: #fff;
+    padding-top: 130px;
+}
+
+#menudetails .title h1 {
+    font-size: 50px;
+    font-family: 'Playfair Display', sans-serif;
+}
+
+#menudetails .title p {
+    font-size: 20px;
+}
+
+#menudetails .title button {
     margin-top: 10px;
 }
 

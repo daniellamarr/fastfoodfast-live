@@ -234,9 +234,13 @@ class FastFood {
                     menu.forEach(x => {
                         const first = '<div class="item">'+
                             '<img src="'+x.image+'" alt="">'+
-                            '<div class="item-text">'+
-                                '<a href="">'+x.title+'</a>'+
-                            '</div>';
+                            '<div class="item-text">';
+                        let second;
+                        if (page=="allmenu") {
+                            second = '<a href="menu.html#menu_'+x.id+'">'+x.title+'</a></div>';
+                        }else{
+                            second = '<a href="../menu.html#menu_'+x.id+'">'+x.title+'</a></div>';
+                        }
                         let pricetag;
                         if (page=="allmenu") {
                             pricetag = '<div class="price-tag">'+
@@ -248,12 +252,35 @@ class FastFood {
                             '</div>';
                         }else if (page=="allmenuEdit") {
                             pricetag = '<div class="price-tag">'+
-                                '<button class="editmenubtn" target="editmenu">Edit</button>'+
                             '</div></div>';
                         }
-                        all += first+pricetag;
+                        all += first+second+pricetag;
                     });
                     document.getElementById(page).innerHTML = all;
+                }
+            }
+        )
+    }
+
+    /**
+     * Get a specific menu
+     * @param {number} id - Specific ID to be queried
+     */
+    static getOneMenu (id) {
+        this.fetchGet(
+            `/api/v1/menu/${id}`,
+            {},
+            (res,data) => {
+                if (res==200) {
+                    const loader = document.getElementById('loader');
+                    loader.classList.add('hide');
+                    document.getElementById('menudetails').style.backgroundImage = `url(${data.menu.image_path})`;
+                    document.getElementById('menuname').innerHTML = data.menu.title;
+                    document.getElementById('menuprice').innerHTML = data.menu.price;
+                    document.getElementById('menuqty').innerHTML = data.menu.quantity;
+                    document.getElementById('menubtn').setAttribute('onclick',`addToCart('${data.menu.title}',${data.menu.price},'${data.menu.image_path}')`);
+                }else{
+                    window.location.replace('index.html');
                 }
             }
         )
@@ -321,6 +348,8 @@ class FastFood {
                         '</tr>'
                     });
                     document.getElementById('userorders').innerHTML = dat;
+                }else{
+                    document.getElementById('userorders').innerHTML = data.message;
                 }
             }
         )
