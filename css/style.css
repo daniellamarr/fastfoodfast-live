@@ -568,6 +568,10 @@ table li {
     background-color: rgb(189, 189, 5) !important;
 }
 
+.white-text {
+    color: #fff;
+}
+
 .h-questions {
     padding: 10px;
     line-height: 30px;
@@ -723,6 +727,10 @@ footer a:hover {
 
     #foods .item {
         width: 30%;
+    }
+
+    #foods .item img {
+        height: unset;
     }
 
     #foods .item .price {

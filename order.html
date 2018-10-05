@@ -28,6 +28,9 @@
                     <li class="user-logout">
                         <a href="profile.html"><i class="ti-user"></i></a>
                     </li>
+                    <li class="user-logout">
+                        <a href="javascript:;" class="logout"><i class="ti-power-off"></i></a>
+                    </li>
                     <li class="user-login"><a href="login.html">Login</a></li>
                     <li class="user-login"><a href="signup.html">Sign Up</a></li>
                 </ul>
@@ -50,7 +53,7 @@
                         <div class="dropdown hide" id="dropdown">
                             <ul>
                                 <li class="user-logout"><a href="profile.html">Profile</a></li>
-                                <li class="user-logout"><a href="javascript:;" id="logout">Logout</a></li>
+                                <li class="user-logout"><a href="javascript:;" class="logout">Logout</a></li>
                                 <li class="user-login"><a href="login.html">Login</a></li>
                                 <li class="user-login"><a href="signup.html">Sign Up</a></li>
                             </ul>
@@ -94,6 +97,7 @@
     <script src="js/script.js"></script>
     <script>
         cartorders();
+        FastFood.logout('token');
     </script>
 </body>
 </html>

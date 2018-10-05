@@ -22,7 +22,8 @@
             </div>
             <nav>
                 <ul class="s-hide">
-                    <li><a href="">Admin</a></li>
+                    <li><span class="white-text">Hello, Admin</span></li>
+                    <li><a href="javascript:;" class="logout">Logout</a></li>
                 </ul>
                 <ul class="l-hide">
                     <li>
@@ -31,7 +32,7 @@
                             <ul>
                                 <li><a href="admin.html">Home</a></li>
                                 <li><a href="allorders.html">All Orders</a></li>
-                                <li><a href="admin.html">Menu</a></li>
+                                <li><a href="javascript:;" class="logout">Logout</a></li>
                             </ul>
                         </div>
                     </li>
@@ -42,7 +43,6 @@
             <ul>
                 <li><a href="admin.html">Home</a></li>
                 <li><a href="allorders.html">All Orders</a></li>
-                <li><a href="admin.html">Menu</a></li>
             </ul>
         </section>
         <section id="admin-section">
@@ -93,8 +93,10 @@
     <script src="../js/admin.js"></script>
     <script src="../js/upload.js"></script>
     <script>
+        checkAdminLogout(); 
         FastFood.getAllMenu('allmenuEdit');
         uploadImage('menuForm');
+        FastFood.logout('adminToken');
     </script>
 </body>
 </html>

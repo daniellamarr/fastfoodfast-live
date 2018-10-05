@@ -421,6 +421,20 @@ class FastFood {
             FastFood.errCall('Connection to the server failed',500);
         });
     }
+
+    /**
+     * Logs out a user from the app
+     */
+    static logout (token) {
+        const logout = document.getElementsByClassName('logout');
+        for (let i = 0; i < logout.length; i++) {
+            const logs = logout[i];
+            logs.addEventListener('click', () => {
+                localStorage.removeItem(token);
+                window.location.href = 'login.html';
+            })
+        }
+    }
 }
 
 FastFood.initUser();
