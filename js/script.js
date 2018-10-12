@@ -50,20 +50,22 @@ const cart = (num,title) => {
  * @param {number} p - Price of Item
  * @param {string} img - Image of Item
  */
-const checkAndAdd = (name,arr,p,img) => {
+const checkAndAdd = (name,id,arr,p,img) => {
     var found = arr.some(function (el) {
       return el.order === name;
     });
+    const qty = parseInt(document.getElementById(`qty${id}`).value);
     if (!found) {
         arr.push({
+            id: id,
             order: name,
-            quantity: 1,
+            quantity: qty,
             price: p,
             image: img
         })
     }else{
         const index = arr.findIndex(x => x.order==name);
-        arr[index].quantity = arr[index].quantity + 1;
+        arr[index].quantity = qty;
         return true;
     }
 }
@@ -115,7 +117,7 @@ if (localStorage.getItem('items')==null) {
     for (let i = 0; i < item.length; i++) {
         const x = item[i];
         props += '<li>'+
-            '<a href="">'+
+            '<a href="menu.html#menu_'+x.id+'">'+
                 '<img src="'+x.image+'" alt="">'+
                 '<p class="cart-title">'+x.order+'</p>'+
                 '<p>'+x.quantity+' x '+x.price+'</p>'+
@@ -147,15 +149,16 @@ if (localStorage.getItem('items')==null) {
 /**
  * Adds an Item to the cart
  * @param {string} cl - Item being added to cart
+ * @param {number} id - ID of Item being added to cart
  * @param {number} p - Price of Item
  * @param {string} img - Image of Item
  */
-function addToCart (cl,p,img) {
+function addToCart (cl,id,p,img) {
     let props = "";
-    const ch = checkAndAdd(cl,item,p,img);
+    const ch = checkAndAdd(cl,id,item,p,img);
     item.forEach(x => {
         props += '<li>'+
-            '<a href="">'+
+            '<a href="menu.html#menu_'+id+'">'+
                 '<img src="'+x.image+'" alt="">'+
                 '<p class="cart-title">'+x.order+'</p>'+
                 '<p>'+x.quantity+' x '+x.price+'</p>'+
@@ -166,8 +169,10 @@ function addToCart (cl,p,img) {
     if (!ch) {
         for (let j = 0; j < itemsincart.length; j++) {
             const itemsincartx = itemsincart[j];
+            itemsincartx.classList.add('shoppingcart-a');
             items = itemsincartx.innerHTML;
             itemsincartx.innerHTML = parseInt(items) + 1;
+            setTimeout(()=>{itemsincartx.classList.remove('shoppingcart-a');},800)
         }
     }
     document.getElementById("cart-details").innerHTML = props;
