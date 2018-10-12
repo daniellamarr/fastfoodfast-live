@@ -100,6 +100,12 @@ nav ul.s-hide li {
 
 .s-hide i.ti-shopping-cart, .ti-user {
     font-size: 20px;
+    transition: 0.3s all;
+}
+
+.shoppingcart-a {
+    transition: 0.3s all;
+    font-size: 8px;
 }
 
 nav ul.l-hide {
@@ -257,6 +263,13 @@ header.hbg .badge {
     padding-bottom: 10px;
 }
 
+.quantityField {
+    width: 45px;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    padding: 5px;
+}
+
 .clear {
     clear: both;
 }
@@ -381,7 +394,7 @@ header.hbg .badge {
 
 #profile {
     width: 100%;
-    height: 250px;
+    height: 300px;
     background-image: url(../images/5.jpg);
     background-size: cover;
     background-position: center;
@@ -391,24 +404,16 @@ header.hbg .badge {
     background-color: rgba(0, 0, 0, .75);
 }
 
-#profile .title {
-    text-align: center;
+.profile-details {
+    position: absolute;
+    top: 130px;
+    left: 80px;
     color: #fff;
-    padding-top: 100px;
-}
-
-#profile .title h1 {
-    font-size: 50px;
-    font-family: 'Playfair Display', sans-serif;
-}
-
-#profile .title button {
-    margin-top: 10px;
 }
 
 .profile {
     position: absolute;
-    top: 180px;
+    top: 230px;
     left: 80px;
     z-index: 10;
 }
@@ -429,20 +434,11 @@ header.hbg .badge {
     padding: 10px;
 }
 
-.profileDetails {
-    position: absolute;
-    background-color: #eee;
-    float: left;
-    width: 20%;
-    padding-top: 40px;
-    padding-left: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+#profile-section {
+    margin-top: 20px;
 }
 
 .profileOrders {
-    float: left;
-    margin-left: 23%;
-    width: 55%;
     padding:30px 30px 30px 50px;
 }
 
@@ -451,12 +447,6 @@ header.hbg .badge {
     font-size: 20px;
     padding-bottom: 5px;
     border-bottom:3px solid chocolate;
-}
-
-.profileDetails ul li {
-    padding:30px;
-    padding-left: 0;
-    list-style: none;
 }
 
 .profileButtons {
@@ -615,6 +605,10 @@ table li {
     color: rgb(187, 48, 24) !important;
 }
 
+.default-text {
+    color: chocolate;
+}
+
 .h-questions {
     padding: 10px;
     line-height: 30px;
@@ -743,10 +737,6 @@ footer a:hover {
     #foods .item {
         width: 30%;
     }
-
-    #foods .item .price {
-        display: none;
-    }
 }
 
 @media (max-width: 1024px) {
@@ -757,15 +747,22 @@ footer a:hover {
     #foods .item {
         width: 30%;
     }
-
-    #foods .item .price {
-        display: none;
-    }
 }
 
 @media (max-width: 600px) {
     nav > ul.s-hide > li {
         padding-right: 20px;
+    }
+
+    .profile-details {
+        top: 70px;
+        left: 10px;
+        line-height: 15px;
+        font-size: 12px;
+    }
+
+    #foods {
+        padding: 20px;
     }
 
     #foods .item {
@@ -774,10 +771,6 @@ footer a:hover {
 
     #foods .item img {
         height: unset;
-    }
-
-    #foods .item .price {
-        display: none;
     }
 
     .error {
@@ -894,13 +887,6 @@ footer a:hover {
     .profile {
         top: 130px;
         left: 10px;
-    }
-
-    .profileDetails {
-        position: inherit;
-        width: auto;
-        float: none;
-        margin-bottom: 30px;
     }
 
     .profileOrders {

@@ -17,6 +17,6 @@ window.onhashchange = () => {
 
     const menu2 = href2.indexOf('#menu_');
 
-    const sub2 = href.substring(menu2+6,href2.length);
+    const sub2 = href2.substring(menu2+6,href2.length);
     getMenu(sub2);
 }

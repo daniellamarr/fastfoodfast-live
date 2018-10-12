@@ -69,6 +69,8 @@ class FastFood {
                 error[i].innerHTML = e;
             }
         }else{
+            const loader = document.getElementById('loader');
+            loader.classList.add('hide');
             for (let i = 0; i < error.length; i++) {
                 const err = error[i];
                 error[i].classList.remove('hide');
@@ -93,8 +95,6 @@ class FastFood {
         })
         .then(
             (response) => {
-                const loader = document.getElementById('loader');
-                loader.classList.add('hide');
                 response.json().then(function(data) {
                     FastFood.errCall(data.message,response.status)
                     cb(response.status,data);
@@ -237,16 +237,19 @@ class FastFood {
                             '<div class="item-text">';
                         let second;
                         if (page=="allmenu") {
-                            second = '<a href="menu.html#menu_'+x.id+'">'+x.title+'</a></div>';
+                            second = '<a href="menu.html#menu_'+x.id+'">'+x.title+
+                            '<h5 class="price">N'+x.price+'</h5>'+
+                            '</a></div>';
                         }else{
                             second = '<a href="../menu.html#menu_'+x.id+'">'+x.title+'</a></div>';
                         }
                         let pricetag;
                         if (page=="allmenu") {
                             pricetag = '<div class="price-tag">'+
-                                    '<button class="price">N'+x.price+'</button>'+
+                                    
+                                    '<input type="number" id="qty'+x.id+'" class="quantityField" value="1"><br><br>'+
                                     '<button class="addtocart"'+
-                                    'onclick="addToCart(this.value,'+x.price+',\''+x.image+'\')"'+
+                                    'onclick="addToCart(this.value,\''+x.id+'\','+x.price+',\''+x.image+'\')"'+
                                     'value="'+x.title+'">Add to cart</button>'+
                                 '</div>'+
                             '</div>';
@@ -278,7 +281,12 @@ class FastFood {
                     document.getElementById('menuname').innerHTML = data.menu.title;
                     document.getElementById('menuprice').innerHTML = data.menu.price;
                     document.getElementById('menuqty').innerHTML = data.menu.quantity;
-                    document.getElementById('menubtn').setAttribute('onclick',`addToCart('${data.menu.title}',${data.menu.price},'${data.menu.image_path}')`);
+                    document.getElementById('menubtn').setAttribute('onclick',`addToCart('${data.menu.title}','${data.menu.id}',${data.menu.price},'${data.menu.image_path}')`);
+                    const qty = document.getElementsByClassName('quantityField');
+                    for (let i = 0; i < qty.length; i++) {
+                        const x = qty[i];
+                        x.setAttribute('id',`qty${data.menu.id}`);
+                    }
                 }else{
                     window.location.replace('index.html');
                 }
@@ -334,19 +342,21 @@ class FastFood {
                 document.getElementById('ordersload').classList.add('hide');
                 if (res==200) {
                     let dat = '';
-                    data.order.forEach(x => {
+                    for (let i = 0; i < data.order.length; i++) {
+                        const x = data.order[i];
                         let b = '';
                         const food = x.food;
-                        food.forEach(a => {
-                            b += a.orderid+'<br>';
-                        });
+                        for (let i = 0; i < food.length; i++) {
+                            const a = food[i];
+                            b += a.orderid+' - '+a.quantity+'<br>';
+                        };
                         dat += '<tr>'+
-                            '<td>'+x.id+'</td>'+
-                            '<td>'+b+'</td>'+
+                            '<td>'+(i+1)+'</td>'+
+                            '<td><a onclick="modalPop()" class="default-text" href="javascript:;">'+b+'</a></td>'+
                             '<td>'+x.price+'</td>'+
                             '<td>'+x.status+'</td>'+
                         '</tr>'
-                    });
+                    };
                     document.getElementById('userorders').innerHTML = dat;
                 }else{
                     document.getElementById('userorders').innerHTML = data.message;
@@ -374,7 +384,7 @@ class FastFood {
             status = '<button class="blue" onclick="orderStatus(\'new\','+id+')">Revert cancel</button>';
         }
         if (stat==='complete') {
-            status = '<button class="green">Order Completed</button>';
+            status = '<h5>Order Completed</h5>';
         }
 
         return status;
@@ -399,21 +409,23 @@ class FastFood {
                 }else{
                     const orders = data.orders;
                     let all = "";
-                    orders.forEach(x => {
+                    for (let i = 0; i < orders.length; i++) {
+                        const x = orders[i];
                         let b = "";
                         const food = x.food;
-                        food.forEach(a => {
-                            b += '<div class="tags"><li>'+a.orderid+'</li></div>';
-                        });
+                        for (let i = 0; i < food.length; i++) {
+                            const a = food[i];
+                            b += a.orderid+' - '+a.quantity+'<br>';
+                        };
                         all += '<tr>'+
-                            '<td>'+x.id+'</td>'+
+                            '<td>'+(i+1)+'</td>'+
                             '<td>'+x.user.name+'</td>'+
-                            '<td>'+b+'</td>'+
+                            '<td><a onclick="modalPop()" class="default-text" href="javascript:;">'+b+'</a></td>'+
                             '<td>'+x.price+'</td>'+
                             '<td>'+x.status+'</td>'+
                             '<td>'+this.checkStatus(x.status,x.id)+'</td>'+
                         '</tr>';
-                    });
+                    };
                     allorders.innerHTML = all;
                 }
             }
